@@ -1,0 +1,14 @@
+.Nav{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    background-color: bisque;
+    height: var(--navHeight);
+}
+
+.Logo{
+    padding: 5px;
+    display: flex;
+    flex-flow:column;
+    justify-content: flex-end;
+}

@@ -1,0 +1,22 @@
+
+
+.BurgerContainer{
+    align-items: center;
+    display: flex;
+    flex-flow:column;
+    justify-content: flex-end;
+    padding: 5px;
+    
+}
+
+.BurgerContainer ul{
+ list-style: none;
+ display: flex;
+ flex-flow: row;
+ justify-content: space-around;
+}
+
+.BurgerContainer li{
+    padding: 0 5px;
+    width: 100%;
+}

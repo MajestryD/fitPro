@@ -1,0 +1,17 @@
+.inputField{
+    display: flex;
+    justify-content:flex-start;
+    flex-flow: column;
+    
+}
+
+input{
+    width: 60%;
+    align-self: center;
+}
+
+label{
+    width: 60%;
+    align-self: center;
+    text-align: start;
+}

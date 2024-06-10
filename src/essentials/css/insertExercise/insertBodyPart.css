@@ -1,0 +1,26 @@
+.displayBodyPart{
+    padding: 10px 5px;
+    margin-bottom: 5px;
+    border: 1px solid;
+    width: 90%;
+    align-self: center;
+}
+
+.addBodyPart{
+    padding: 10px 5px;
+    margin-bottom: 5px;
+    border: 1px solid;
+    width: 90%;
+    align-self: center;
+}
+
+.displayBodyPartMainContainer{
+    width:100%;
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
+}
+
+.displayBodyPartMainContainer ul{
+    list-style: none;
+}

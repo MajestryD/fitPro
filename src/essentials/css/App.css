@@ -1,5 +1,29 @@
+:root{
+  --navHeight: 60px;
+}
+
+*{
+  padding: 0;
+  margin: 0;
+}
+
+
+body{
+  height: 100vh;
+}
+
 .App {
   text-align: center;
+}
+
+.App .AppBody{
+  background-color: beige;
+  height: calc(100vh - var(--navHeight));
+  padding: 50px 0 0 0;
+  display: flex;
+  flex-flow: column;
+  justify-content:flex-start;
+  align-items: center;
 }
 
 .App-logo {
