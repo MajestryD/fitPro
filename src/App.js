@@ -8,7 +8,7 @@ import { Routes, Link, Route } from 'react-router-dom';
 function App() {
 
   return (
-      <div className="App">
+      <div className="App dark">
 
         <Nav />
         <div className='AppBody'>

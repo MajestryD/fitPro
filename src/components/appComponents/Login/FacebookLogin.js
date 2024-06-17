@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import { useDispatch } from 'react-redux';
 import { setUser } from "../../../features/login/facebook/authSlice";
-import { useFacebookLoginMutation, useFacebookProfileQuery } from "../../../features/login/facebook/facebookApiSlice"
+import { useFacebookProfileQuery } from "../../../features/login/facebook/facebookApiSlice"
 
 const Login = () => {
     const { isLoading, error, data } = useFacebookProfileQuery();
@@ -15,7 +15,6 @@ const Login = () => {
 
     useEffect(() => {
         if (data) {
-            console.log("here")
             dispatch(setUser(data));
         }
     }, [data,dispatch]);

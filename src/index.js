@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { ApiProvider } from '@reduxjs/toolkit/query/react';
 import { BrowserRouter } from 'react-router-dom';
 import ReactDOM from 'react-dom/client';
-import './essentials/css/index.css';
+import './essentials/css/output.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
