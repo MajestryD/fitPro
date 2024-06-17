@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useAddUserExerciseWorkOutMutation } from "../../../features/exercise/exerciseApiSlice";
+import { useAddUserExerciseWorkOutMutation } from "../../../../features/exercise/exerciseApiSlice";
 import CollapsibleInserts from "./collapsibleInserts";
+import DisplayCollapsible from "../displayCard/displayCollapsible";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
+  CardFooter
 } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -72,37 +74,30 @@ const InsertNewUserExercise = ({ data, exerciseMap, userId, today }) => {
       console.error('Error posting workout:', error)
     }
   }
-
-
   return (
-    <div>
-      <Card className="h-[450px] w-[450px] no-scrollbar overflow-scroll pb-1 mb-2">
-        <CardHeader>
-          <CardTitle>Today's Workout</CardTitle>
-          <CardDescription>Log you workout for {today}</CardDescription>
-        </CardHeader>
-        <CardContent>
+
+
+        <CardContent className="w-[80%] self-center">
           {Object.entries(exerciseSet).map(([name, reps], index) => (
-            <CollapsibleInserts
-              key={index}
-              removeExercise={removeExercise}
-              handleInputChange={handleInputChange}
-              name={name}
-              reps={reps}
-              index={index}
-              handleRemoveRep={handleRemoveRep}
-              handleInputEnter={handleInputEnter}
+            <DisplayCollapsible
+              collapsibleTitle={name}
+              collapsibleButton={<Button variant="destructive" onClick={() => removeExercise(name)}>x</Button>}
+              collapsibleContent={
+                <CollapsibleInserts
+                key={index}
+                handleInputChange={handleInputChange}
+                name={name}
+                reps={reps}
+                handleRemoveRep={handleRemoveRep}
+                handleInputEnter={handleInputEnter}
+              />
+              }
             />
+            
+           
           ))}
         </CardContent>
-      </Card>
-      <Button onClick={() =>
-        console.log(
-          "The Data being passed is: \n -------- \n" + JSON.stringify(data)
-        )
-      } className="w-[20%]">Data</Button>
-      <Button onClick={() => { console.log(JSON.stringify(exerciseSet)); handleSubmit() }}> Save workout</Button>
-    </div>
+
   );
 };
 

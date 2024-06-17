@@ -3,7 +3,7 @@ import "../../essentials/css/insertExercise/insertBodyPart.css"
 import { useSelector } from 'react-redux';
 import { useGetAllExercisesQuery, useGetAllExercisesOfUserQuery } from "../../features/exercise/exerciseApiSlice";
 import Login from "../appComponents/Login/FacebookLogin";
-import UserExercises from "./displayUserExercises/UserExercises";
+import UserExercises from "./userExercises/userExercises";
 import DisplayAllExerciseSets from "./displayAllExerciseSets/displayAllExerciseSets";
 
 const DisplayBodyPart = () => {
@@ -18,8 +18,8 @@ const DisplayBodyPart = () => {
 
     return (
         <div className="w-[100%]">
-            <UserExercises/>
-            <DisplayAllExerciseSets/>
+                <UserExercises/>
+                <DisplayAllExerciseSets/>
         </div>
     );
 

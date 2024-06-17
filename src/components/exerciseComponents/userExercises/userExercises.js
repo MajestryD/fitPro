@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
-
+import { useSelector } from "react-redux";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {
   useGetAllAvailableExerciseQuery,
   useGetAllRoutineOfUserQuery,
 } from "../../../features/exercise/routineApiSlice";
 
-import { useSelector } from "react-redux";
-import InsertNewUserExercise from "../insertNewUserExercises/insertNewUserExercises";
+import DisplayCard from "./displayCard/displayCard";
+import DisplayUserRoutine from "./displayUserRoutine/displayUserRoutine";
+import InsertNewUserExercise from "./insertNewUserExercises/insertNewUserExercises";
 import SearchExercise from "./SearchExercise";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import DisplayUserRoutine from "./displayUserRoutine";
-
 
 const UserExercises = () => {
   const getDate = (amountOfDays) => {
@@ -28,7 +27,6 @@ const UserExercises = () => {
     return ytdd;
   };
   const [startDate, setStartDate] = useState(getDate(1));
-
   const [endDate, setEndDate] = useState(getEndOfToday());
   const { user } = useSelector((state) => state.auth.user);
   const [userId, setUserId] = useState(user.userId);
@@ -84,51 +82,82 @@ const UserExercises = () => {
       <TabsList>
         <TabsTrigger value="1D" onClick={() => { exerciseDayRange(1); setIsSearchByDate(true) }}> 1D </TabsTrigger>
         <TabsTrigger value="3D" onClick={() => { exerciseDayRange(3); setIsSearchByDate(true) }}> 3D </TabsTrigger>
-        <TabsTrigger value="7D" onClick={() => { exerciseDayRange(30); setIsSearchByDate(true) }}> 1M </TabsTrigger>
+        <TabsTrigger value="7D" onClick={() => { exerciseDayRange(30); setIsSearchByDate(true) }}> 7D </TabsTrigger>
         <TabsTrigger value="Search" onClick={() => setIsSearchByDate(false)}> Search </TabsTrigger>
       </TabsList>
       <div className="w-[100%] flex flex-row justify-around items-center self-center">
         {isSearchByDate ? (
           <div>
             <TabsContent value="1D">
-              <DisplayUserRoutine
-                day="1"
-                key={userExercise}
-                data={userExercise}
-                passPropUp={passPropUp}
+              <DisplayCard
+                cardTitle="Your Exercises"
+                cardDescription="The exercise you've perfromed for the past day"
+                cardContent={
+                  <DisplayUserRoutine
+                    day="1"
+                    key={userExercise}
+                    data={userExercise}
+                    passPropUp={passPropUp}
+                  />}
+                cardFooter="Card footer"
               />
+
             </TabsContent>
             <TabsContent value="3D">
-              <DisplayUserRoutine
-                day="3"
-                key={userExercise}
-                data={userExercise}
-                passPropUp={passPropUp}
+              <DisplayCard
+                cardTitle="Your Exercises"
+                cardDescription="The exercise you've perfromed for the past 3 day(s)"
+                cardContent={
+                  <DisplayUserRoutine
+                    day="3"
+                    key={userExercise}
+                    data={userExercise}
+                    passPropUp={passPropUp}
+                  />}
+                cardFooter="Card footer"
               />
             </TabsContent>
             <TabsContent value="7D">
-              <DisplayUserRoutine
-                day="7"
-                key={userExercise}
-                data={userExercise}
-                passPropUp={passPropUp}
+              <DisplayCard
+                cardTitle="Your Exercises"
+                cardDescription="The exercise you've perfromed for the past 7 day(s)"
+                cardContent={
+                  <DisplayUserRoutine
+                    day="7"
+                    key={userExercise}
+                    data={userExercise}
+                    passPropUp={passPropUp}
+                  />}
+                cardFooter="Card footer"
               />
             </TabsContent>
           </div>
         ) : (
           <div>
             <TabsContent value="Search">
-              <SearchExercise data={exerciseData} passPropUp={passPropUp} />
+
+            <DisplayCard
+                cardTitle="Search"
+                cardDescription="Search an exercise to add to your workout routine"
+                cardContent={
+                  <SearchExercise data={exerciseData} passPropUp={passPropUp}/>}
+                cardFooter="Card footer"
+              />
+              
             </TabsContent>
 
           </div>
         )}
-
-        <InsertNewUserExercise
-          data={populateNewSet}
-          exerciseMap={exerciseMap}
-          userId={userId}
-          today={getDate(0)}
+        <DisplayCard
+          cardTitle="Today's Workout"
+          cardDescription={"Log your workout for" +  getDate(0)}
+          cardContent={
+            <InsertNewUserExercise
+              data={populateNewSet}
+              exerciseMap={exerciseMap}
+              userId={userId}
+            />}
+          cardFooter="Card footer"
         />
       </div>
     </Tabs>
